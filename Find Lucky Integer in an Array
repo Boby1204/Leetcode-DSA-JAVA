@@ -1,0 +1,24 @@
+Given an array of integers arr, a lucky integer is an integer that has a frequency in the array equal to its value.
+
+Return the largest lucky integer in the array. If there is no lucky integer return -1.
+
+ class Solution {
+    public int findLucky(int[] arr) {
+     Arrays.sort(arr);
+        int i = arr.length-1;
+        int item, count=0;
+        while (i >= 0) {
+            item = arr[i];
+
+            for (int j = i; j>= 0 && arr[j] == item; j--) {
+                count++;
+            }
+
+            if (count == item) return item;
+            i -= count;
+            count = 0;
+        }
+
+        return -1;
+    }    
+}
